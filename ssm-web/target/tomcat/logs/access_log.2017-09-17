@@ -1,0 +1,6 @@
+0:0:0:0:0:0:0:1 - - [17/Sep/2017:12:33:34 +0800] "GET /ssm-web/ HTTP/1.1" 200 389 http-bio-8080-exec-1 1762
+0:0:0:0:0:0:0:1 - - [17/Sep/2017:12:33:41 +0800] "GET /ssm-web/ssm/hello?str=str HTTP/1.1" 500 5544 http-bio-8080-exec-2 2041
+0:0:0:0:0:0:0:1 - - [17/Sep/2017:12:38:18 +0800] "GET /ssm-web/ HTTP/1.1" 200 389 http-bio-8080-exec-1 259
+0:0:0:0:0:0:0:1 - - [17/Sep/2017:12:38:23 +0800] "GET /ssm-web/ssm/hello?str=str HTTP/1.1" 500 5544 http-bio-8080-exec-2 1438
+0:0:0:0:0:0:0:1 - - [17/Sep/2017:12:56:50 +0800] "GET /ssm-web/ HTTP/1.1" 200 389 http-bio-8080-exec-1 258
+0:0:0:0:0:0:0:1 - - [17/Sep/2017:12:56:57 +0800] "GET /ssm-web/ssm/hello?str=str HTTP/1.1" 200 440 http-bio-8080-exec-2 2843
