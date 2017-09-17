@@ -7,6 +7,11 @@ public class Index {
 	private String state;
 	private Integer age;
 	
+	public Index() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public Integer getId() {
 		return id;
 	}

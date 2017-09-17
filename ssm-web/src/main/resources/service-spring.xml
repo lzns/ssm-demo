@@ -41,6 +41,7 @@
 	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
+	
 	<!-- 设置事物增强 
 		对那些方法加上事务
 	-->
@@ -63,7 +64,7 @@
 	</aop:config>
 
 	<!-- 使用事务注解的方式 -->
-	<tx:annotation-driven/>
+	<tx:annotation-driven transaction-manager="txManager"/>
 	
 	<!-- 配置 sqlSessionFactory -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">

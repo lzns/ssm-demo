@@ -4,4 +4,5 @@ import com.dzf.entity.Index;
 
 public interface IndexService {
 	Index helloService(String str);
+	Integer adPerson(Index index);
 }

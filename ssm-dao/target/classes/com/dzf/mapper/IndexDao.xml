@@ -8,7 +8,7 @@
     <result column="age" property="age" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id,name,state,age
+    id,state,name,age
   </sql>
   <select id="queryByName" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
@@ -16,6 +16,33 @@
     from ssmTest
     where state = #{str};
   </select>
+  <insert id="insert" parameterType="index">
+  	insert into ssmTest 
+  	<trim prefix="(" suffix=")" suffixOverrides=",">
+  		<if test="name!=null">
+  			name,
+  		</if>
+  		<if test="age!=null">
+  			age,
+  		</if>
+  		<if test="state!=null">
+  			state
+  		</if>
+  	</trim>
+  	<trim prefix="values(" suffix=")" suffixOverrides=","> 
+  	<!-- 需要查询suffixOverrrdes代表什么意思，如果下面没有，就会报错 -->
+  		<if test="name!=null">
+  			#{name},
+  		</if>
+  		<if test="age!=null">
+  			#{age},
+  		</if>
+  		<if test="state!=null">
+  			#{state}
+  		</if>
+  	</trim>
+  </insert>
+  
   <!-- <delete id="delete" parameterType="java.lang.Integer" >
     delete from t_user
     where id = #{id,jdbcType=INTEGER}

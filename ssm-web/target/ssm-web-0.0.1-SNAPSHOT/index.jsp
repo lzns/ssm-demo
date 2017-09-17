@@ -6,10 +6,23 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
+<script type="text/javascript">
+	function sub(){
+		document.form2.submit();
+	}
+</script>
 <body>
-	<form action="ssm/hello" method="get">
+	<form name="form1" action="ssm/hello" method="get">
 	<input type="text" name="str"/>
-	<input type="submit" vlaue="点击试试"/>
+	<input type="submit" value="点击试试"/>
+	</form>
+	
+	<form name="form2" action="ssm/add" method = "post">
+		主键：<input type="text" name="id"/>
+		姓名：<input type="text" name="name" />
+		状态：<input type="text" name="str" />
+		年龄：<input type="text" name="age" />
+		<input type="button" value="提交" onclick="sub()"/>
 	</form>
 </body>
 </html>

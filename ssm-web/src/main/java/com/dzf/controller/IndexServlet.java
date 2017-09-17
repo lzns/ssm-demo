@@ -23,4 +23,18 @@ public class IndexServlet {
 		return "index";
 	}
 	
+	
+	@RequestMapping("/add")
+	public String addPerson(Index index,Model model){
+		System.out.println(index);
+		Integer primary = indexService.adPerson(index);
+		if(primary>0){
+			model.addAttribute("hello","添加成功");
+		}else{
+			model.addAttribute("hello","添加失败");
+		}
+		return "index";
+	}
+	
+	
 }

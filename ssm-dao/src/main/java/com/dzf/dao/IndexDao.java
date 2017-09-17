@@ -10,4 +10,5 @@ public interface IndexDao {
 
 	public Index queryByName(String str);
 
+	public Integer insert(Index index);
 }
