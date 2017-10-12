@@ -10,7 +10,7 @@
         <dependent-module archiveName="ssm-dao-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/ssm-dao/ssm-dao">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <property name="context-root" value="ssm-web"/>
         <property name="java-output-path" value="/ssm-web/target/classes"/>
+        <property name="context-root" value="ssm"/>
     </wb-module>
 </project-modules>

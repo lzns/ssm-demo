@@ -58,10 +58,10 @@
 		</tx:attributes>
 	</tx:advice>
 	<!-- aop 切面配置 -->
-	<aop:config>
+	<!-- <aop:config>
 		<aop:pointcut id="servicePointcut" expression="execution(* com.dzf.service..*.*(..))" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="servicePointcut" />
-	</aop:config>
+	</aop:config> -->
 
 	<!-- 使用事务注解的方式 -->
 	<tx:annotation-driven transaction-manager="txManager"/>

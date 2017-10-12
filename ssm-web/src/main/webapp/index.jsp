@@ -10,13 +10,16 @@
 	function sub(){
 		document.form2.submit();
 	}
+	function sub2(){
+		document.form3.submit();
+	}
 </script>
 <body>
 	<form name="form1" action="ssm/hello" method="get">
 	<input type="text" name="str"/>
 	<input type="submit" value="点击试试"/>
 	</form>
-	
+		<hr/>
 	<form name="form2" action="ssm/add" method = "post">
 		主键：<input type="text" name="id"/>
 		姓名：<input type="text" name="name" />
@@ -24,5 +27,22 @@
 		年龄：<input type="text" name="age" />
 		<input type="button" value="提交" onclick="sub()"/>
 	</form>
+		<hr/>
+	<form name="form3" action="ssm/getList" method = "post">
+		姓名：<input type="text" name="name">
+		年龄：<input type="text" name="age">
+		<!-- <input type="button" value="查询" onclick="sub2()"/> -->
+		<input type="submit" value="查询">
+	</form>
+	<hr/>
+	<form name="form4" action="ssm/getPkByInsert" method = "post">
+		姓名：<input type="text" name="name">
+		年龄：<input type="text" name="age">
+		状态：<input type="text" name="state">
+		<!-- <input type="button" value="查询" onclick="sub2()"/> -->
+		<input type="submit" value="插入获得主键">
+	</form>
+	
+	
 </body>
 </html>
