@@ -16,7 +16,8 @@
     from ssmTest
     where state = #{str};
   </select>
-  <insert id="insert" parameterType="index">
+  
+  <insert id="insert" parameterType="index" useGeneratedKeys="true" keyProperty="id">
   	insert into ssmTest 
   	<trim prefix="(" suffix=")" suffixOverrides=",">
   		<if test="name!=null">
@@ -30,7 +31,7 @@
   		</if>
   	</trim>
   	<trim prefix="values(" suffix=")" suffixOverrides=","> 
-  	<!-- 需要查询suffixOverrrdes代表什么意思，如果下面没有，就会报错 -->
+  	<!-- 需要查询suffixOverrrdes代表什么意思，如果下面没有逗号，我第一次接没有写逗号，结果报了貌似乱码的错误 -->
   		<if test="name!=null">
   			#{name},
   		</if>
@@ -42,6 +43,44 @@
   		</if>
   	</trim>
   </insert>
+  
+  <select id="getList" resultMap="BaseResultMap">
+  	select <include refid="Base_Column_List"/>
+  	from ssmTest t
+  	<where>
+  		<if test="name!=null">
+  			<!-- 模糊查询这种写法比较的lowbi  不能防止sql注入的情况 -->
+	  		<!-- t.name like ('%${name}%') -->
+	  		
+	  		<!-- 这种写法会报错，会将（‘%？%’） 看成一个字符串 -->
+	  		<!-- t.name like ('%#{name}%') -->
+	  		
+	  		<!-- 推荐使用这种写法 -->
+	  		t.name like concat('%',#{name},'%')
+  		</if>
+  		and t.age > #{age}
+  	</where>
+  </select>
+  
+  <!-- 插入一条数据返回这条数据的主键 -->
+  <insert id="getPkByInsert" >
+  	<selectKey keyProperty="id" order="AFTER" resultType="long">
+  		select last_insert_id()
+  	</selectKey>
+  	insert into ssmTest (name,age,state) values(#{name},#{age},#{state})
+  </insert>
+  
+  <!-- 分页查询 -->
+  
+  <select id="queryForPage" resultMap="BaseResultMap" >
+  	select <include refid="Base_Column_List"></include>
+  		from ssmTest t 
+  		where t.id in 
+  		<foreach collection="array" item="item" open="(" close=")" separator=",">
+  			#{item}
+  		</foreach>
+  </select>
+  
   
   <!-- <delete id="delete" parameterType="java.lang.Integer" >
     delete from t_user
@@ -169,11 +208,11 @@
     select id,true_name as trueName 
     from t_user
     where role_id=3  and is_valid=1
-  </select>
+  </select>-->
   
   
   
-  <select id="queryForPage" parameterType="userQuery" resultMap="BaseResultMap">
+  <!-- <select id="queryForPage" parameterType="userQuery" resultMap="BaseResultMap">
      select <include refid="Base_Column_List"/>
      from t_user
      
@@ -191,7 +230,7 @@
      
      </where>
   
-  </select>
+  </select> 
   
   <select id="queryUserByUserName" resultMap="BaseResultMap">
       select <include refid="Base_Column_List"/>
@@ -199,7 +238,7 @@
      where is_valid=1 and user_name=#{userName}
   </select>
   
-  <update id="deleteBatch" >
+  <update id="deleteBatch"  >
     update t_user
     set is_valid=0
     where id in
@@ -208,6 +247,52 @@
     </foreach>
   
   </update> -->
+  <!-- 一对多 -->
+  <resultMap type="author" id="authorMap">
+	  <id column="id" property="id"/>
+	  <result column="name" property="name"/>
+	  <result column="age" property="age"/>
+	  <result column="tel" property="tel"/>
+	  <collection property="noteList" ofType="note">
+		  <id column="note_id" property="noteId"/>
+		  <result column="descrition" property="descrition"/>
+		  <result column="title" property="title"/>
+	  </collection>
+  </resultMap>
+  
+  <select id="queryAuthorAndNotes" resultMap="authorMap">
+	select t1.id ,t1.name,t1.age,t1.tel,t2.note_id
+	,t2.descrition,t2.title,t2.author_id
+	from author t1,note t2
+	where t1.id = t2.author_id
+	and t1.id = #{id}
+  </select>
   
   
+  <!-- 查询笔记关联查询出作者的信息 -->
+  <!-- 一对多 -->
+  <resultMap type="note" id="noteMap">
+	  <id column="note_id" property="noteId"/>
+	  <result column="descrition" property="descrition"/>
+	  <result column="title" property="title"/>
+	  <association property="author"  javaType="author">
+	  	<id column="id" property="id"/>
+	  	<result column="name" property="name"/>
+	  	<result column="age" property="age"/>
+	  	<result column="tel" property="tel"/>
+	  </association>
+  </resultMap>
+  
+  <select id="queryNoteAndAuthor" resultMap="noteMap">
+	  select 
+	  	t2.*,
+	  	t1.id,
+	  	t1.name,
+	  	t1.age,
+	  	t1.tel
+	  from author t1,note t2
+	  where t1.id = t2.author_id
+	  and t2.note_id = 2
+  <!-- select * from note t where t.note_id = 1 -->
+  </select>
 </mapper>

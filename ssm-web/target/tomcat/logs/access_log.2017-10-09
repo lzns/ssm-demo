@@ -1,0 +1,4 @@
+0:0:0:0:0:0:0:1 - - [09/Oct/2017:22:55:58 +0800] "GET /ssm-web/ HTTP/1.1" 200 1469 http-bio-8080-exec-1 821
+0:0:0:0:0:0:0:1 - - [09/Oct/2017:22:55:59 +0800] "GET /favicon.ico HTTP/1.1" 404 - http-bio-8080-exec-2 0
+0:0:0:0:0:0:0:1 - - [09/Oct/2017:22:58:15 +0800] "POST /ssm-web/ssm/getPkByInsert HTTP/1.1" 500 15024 http-bio-8080-exec-4 3976
+0:0:0:0:0:0:0:1 - - [09/Oct/2017:23:15:16 +0800] "POST /ssm-web/ssm/getPkByInsert HTTP/1.1" 200 331 http-bio-8080-exec-1 1979
