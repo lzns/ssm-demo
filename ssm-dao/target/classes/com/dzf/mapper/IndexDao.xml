@@ -31,7 +31,7 @@
   		</if>
   	</trim>
   	<trim prefix="values(" suffix=")" suffixOverrides=","> 
-  	<!-- 需要查询suffixOverrrdes代表什么意思，如果下面没有逗号，我第一次接没有写逗号，结果报了貌似乱码的错误 -->
+  	<!-- 需要查询suffixOverrrdes(它的意思是忽略第一个逗号)代表什么意思，如果下面没有逗号，我第一次接没有写逗号，结果报了貌似乱码的错误 -->
   		<if test="name!=null">
   			#{name},
   		</if>
@@ -58,7 +58,9 @@
 	  		<!-- 推荐使用这种写法 -->
 	  		t.name like concat('%',#{name},'%')
   		</if>
-  		and t.age > #{age}
+  		<if test="age!=null">
+	  		and t.age > #{age}
+  		</if>
   	</where>
   </select>
   
@@ -69,6 +71,34 @@
   	</selectKey>
   	insert into ssmTest (name,age,state) values(#{name},#{age},#{state})
   </insert>
+  
+  <insert id="insertAuthor" useGeneratedKeys="true" keyProperty="id">
+  insert into author
+  <trim prefix="(" suffix=")" prefixOverrides=",">
+  	<if test="name!=null">
+		name,  		
+  	</if>
+  	<if test="age!=null">
+  		age,
+  	</if>
+  	<if test="tel!=null">
+  		tel
+  	</if>
+  </trim>
+  	values
+  <trim prefix="(" suffix=")" prefixOverrides=",">
+  	<if test="name!=null">
+		#{name},  		
+  	</if>
+  	<if test="age!=null">
+  		#{age},
+  	</if>
+  	<if test="tel!=null">
+  		#{tel}
+  	</if>
+  </trim>  
+  </insert>
+  
   
   <!-- 分页查询 -->
   

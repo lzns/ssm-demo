@@ -85,5 +85,43 @@
 		<property name="basePackage" value="com.dzf.dao" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
+	 <bean id="requestFactory" class="org.springframework.http.client.SimpleClientHttpRequestFactory">
+        <property name="readTimeout" value="10000"/>
+        <property name="connectTimeout" value="5000"/>
+    </bean>
+
+<!-- 配置RestTemplate这个远程访问 -->
+    <bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
+        <constructor-arg ref="requestFactory"/>
+        <!-- <property name="messageConverters">
+            <list>
+                <bean class="org.springframework.http.converter.FormHttpMessageConverter"/>
+                <bean class="org.springframework.http.converter.xml.MappingJackson2XmlHttpMessageConverter"/>
+                <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+                <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                    <property name="supportedMediaTypes">
+                        <list>
+                            <value>text/plain;charset=UTF-8</value>
+                        </list>
+                    </property>
+                </bean>
+            </list>
+        </property> -->
+    </bean>
+	
+	<!-- 配置rmi远程访问的服务端 
+	bean中id属性有且只有一个，出现同名的要么最后面一个把之前的全部覆盖掉（spring默认设置），要么会报错（如果spring
+	设置不可以覆盖di相同的bean定义，那么就出报错），
+	如果只配置了name属性，没有配置id属性，那么默认name属性的值为id属性的值
+	-->
+	<bean name = "rmiServerService" class="com.dzf.service.RmiServerServiceImpl"></bean>
+	<bean name="rmiTest" class="org.springframework.remoting.rmi.RmiServiceExporter">  
+       <property name="service" ref="rmiServerService" />  
+       <property name="serviceName" value="rmiServerService" />  
+       <!--这个地方必须写接口的位置全限定名  -->
+       <property name="serviceInterface" value="com.dzf.service.RmiServerService"/>  
+       <!-- 这个端口不能和项目的端口一样，是个独立的端口 -->
+       <property name="registryPort" value="8083" />  
+    </bean>
 </beans>
  

@@ -10,6 +10,18 @@
 		<module>ssm-service</module>
 		<module>ssm-dao</module>
 	</modules>
+	<dependencyManagement>
+	    <dependencies>
+	        <dependency>
+	            <groupId>org.springframework</groupId>
+	            <artifactId>spring-framework-bom</artifactId>
+	            <version>4.3.2.RELEASE</version>
+	            <type>pom</type>
+	            <scope>import</scope>
+	        </dependency>
+	    </dependencies>
+	</dependencyManagement>
+	
 	<dependencies>
 		<!-- junit 测试 -->
 		<dependency>
@@ -72,8 +84,10 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.39</version>
 		</dependency>
+		
+		
 		<!-- 日志打印相关的 jar -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>1.7.2</version>
@@ -82,7 +96,13 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>1.7.2</version>
-		</dependency>
+		</dependency> -->
+		<dependency>
+        <groupId>log4j</groupId>
+        <artifactId>log4j</artifactId>
+        <version>1.2.14</version>
+    </dependency>	
+
 
 		<!-- mybite分页所需要的插件依赖 -->
 		<dependency>
@@ -169,6 +189,8 @@
 				<artifactId>tomcat7-maven-plugin</artifactId>
 				<version>2.2</version>
 				<configuration>
+					<url>http://localhost:8080/manager/text</url>  
+                    <server>admin</server> 
 					<scanIntervalSeconds>10</scanIntervalSeconds>
 					<contextPath>/</contextPath>
 				</configuration>

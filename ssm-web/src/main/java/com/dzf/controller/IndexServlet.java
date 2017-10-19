@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -59,8 +60,9 @@ public class IndexServlet {
 		}else{
 			msg = "数据插入失败！！";
 		}
-		model.addAttribute("hello",msg);
-		return "index";
+//		model.addAttribute("hello",msg);
+//		return "index";
+		return msg;
 	}
 
 	@RequestMapping("queryForPage")
@@ -80,6 +82,31 @@ public class IndexServlet {
 	public Author queryAuthor(Integer id){
 		System.out.println(id);
 		return indexService.queryAuthorAndNotes(id);
+	}
+	
+	/**
+	 * 获取主键通过插入的数据
+	 */
+	@RequestMapping("/getPkByList2")
+	@ResponseBody
+	public Integer getPkByList2 (Index index,HttpServletRequest request)throws Exception{
+		request.setCharacterEncoding("utf-8");
+		System.out.println(index);
+		return indexService.getPkByInsert2(index);
+	}
+
+	@RequestMapping("/insertAuthor")
+	@ResponseBody
+	public Integer insertAuthor(Author author){
+		System.out.println(author.toString());
+		return indexService.insertAuthor(author);
+	}
+	
+	@RequestMapping("getNotes")
+	@ResponseBody
+	public Map<String,Object> getNotes(String name){
+		System.out.println("--------"+name);
+		return indexService.getNotes(name);
 	}
 	
 }

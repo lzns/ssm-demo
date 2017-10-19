@@ -18,4 +18,9 @@ public interface IndexService {
 	List<Note> queryNoteAndAuthor();
 	
 	Author queryAuthorAndNotes(Integer id);
+	
+	Integer  getPkByInsert2(Index index);
+	Integer insertAuthor(Author author);
+	
+	Map<String,Object> getNotes(String title);
 }

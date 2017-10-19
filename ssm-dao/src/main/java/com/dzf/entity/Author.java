@@ -1,8 +1,9 @@
 package com.dzf.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Author {
+public class Author implements Serializable{
 	@Override
 	public String toString() {
 		return "Author [id=" + id + ", name=" + name + ", tel=" + tel + ", age=" + age + ", noteList=" + noteList + "]";
