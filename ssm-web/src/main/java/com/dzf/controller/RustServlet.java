@@ -24,6 +24,7 @@ public class RustServlet {
 		System.out.println("========"+name+"==========");
 		Map map = new HashMap();
 		map.put("name", name);
+		System.out.println("高线");
 		String str = restTemplate.getForObject("http://localhost:8081/restDemo/rest?name="+name,String.class);
 		System.out.println(str);
 		return str;

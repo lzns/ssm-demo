@@ -109,16 +109,19 @@
         </property> -->
     </bean>
 	
+	<!-- 配置rmi远程访问的服务端 
+	bean中id属性有且只有一个，出现同名的要么最后面一个把之前的全部覆盖掉（spring默认设置），要么会报错（如果spring
+	设置不可以覆盖di相同的bean定义，那么就出报错），
+	如果只配置了name属性，没有配置id属性，那么默认name属性的值为id属性的值
+	-->
 	<bean name = "rmiServerService" class="com.dzf.service.RmiServerServiceImpl"></bean>
-	<!-- 配置rmi远程访问的服务端 -->
-	
 	<bean name="rmiTest" class="org.springframework.remoting.rmi.RmiServiceExporter">  
        <property name="service" ref="rmiServerService" />  
        <property name="serviceName" value="rmiServerService" />  
-       <property name="serviceInterface" value="com.dzf.service.RmiServerServiceImpl"/>  
-       <property name="registryPort" value="8080" />  
+       <!--这个地方必须写接口的位置全限定名  -->
+       <property name="serviceInterface" value="com.dzf.service.RmiServerService"/>  
+       <!-- 这个端口不能和项目的端口一样，是个独立的端口 -->
+       <property name="registryPort" value="8083" />  
     </bean>
-	
-	
 </beans>
  
