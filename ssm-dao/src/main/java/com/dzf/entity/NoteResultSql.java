@@ -34,4 +34,12 @@ public class NoteResultSql{
 			}
 		}.toString();
 	}
+	
+	public String getNoteById(){
+		return new SQL(){
+			
+			
+		}.toString();
+		
+	}
 }
