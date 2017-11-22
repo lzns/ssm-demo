@@ -1,13 +1,26 @@
 package com.dzf.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+@SuppressWarnings("all")
 public class Note implements Serializable{
 
 	private Integer noteId;
 	private String descrition;
 	private String title;
 	private Author author;
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	private Date createTime;
+	
+	public Date getCreateTime() {
+		return createTime;
+	}
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
 	public Integer getNoteId() {
 		return noteId;
 	}
