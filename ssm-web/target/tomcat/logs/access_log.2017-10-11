@@ -1,6 +1,0 @@
-0:0:0:0:0:0:0:1 - - [11/Oct/2017:22:07:26 +0800] "GET /ssm-web/ssm/queryForPage?id=3&id=1&id=2 HTTP/1.1" 200 - http-bio-8080-exec-1 425
-0:0:0:0:0:0:0:1 - - [11/Oct/2017:22:08:16 +0800] "GET /ssm-web/ssm/queryForPage?ids=2&ids=1 HTTP/1.1" 200 131 http-bio-8080-exec-2 3213
-0:0:0:0:0:0:0:1 - - [11/Oct/2017:22:09:58 +0800] "GET /ssm-web/ssm/queryForPage?ids=2&ids=1&ids=3&ids=4&ids=5&ids=6&ids=7&ids=8&ids=9&ids=10&ids=11 HTTP/1.1" 200 594 http-bio-8080-exec-4 38
-0:0:0:0:0:0:0:1 - - [11/Oct/2017:22:10:40 +0800] "GET /ssm-web/ssm/queryForPage?ids=2&ids=1&ids=3&ids=4&ids=5&ids=6&ids=7&ids=8&ids=9&ids=10&ids=11 HTTP/1.1" 200 594 http-bio-8080-exec-5 47
-0:0:0:0:0:0:0:1 - - [11/Oct/2017:23:46:22 +0800] "GET /ssm-web/ssm/queryNote HTTP/1.1" 500 9364 http-bio-8080-exec-1 1831
-0:0:0:0:0:0:0:1 - - [11/Oct/2017:23:50:01 +0800] "GET /ssm-web/ssm/queryNote HTTP/1.1" 200 952 http-bio-8080-exec-1 1426

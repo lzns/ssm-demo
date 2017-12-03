@@ -1,1 +1,6 @@
+com\dzf\controller\MyFileUpload.class
+com\dzf\redis\RedisConfig.class
+com\dzf\controller\RustServlet.class
 com\dzf\controller\IndexServlet.class
+com\dzf\controller\RedisTest.class
+com\dzf\redis\RedisClient.class
