@@ -1,3 +1,4 @@
+com\dzf\service\UserService.class
 com\dzf\service\RedisService.class
 com\dzf\service\IndexServiceImpl.class
 com\dzf\service\RmiServerService.class

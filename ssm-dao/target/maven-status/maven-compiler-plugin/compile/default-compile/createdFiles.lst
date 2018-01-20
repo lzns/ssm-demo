@@ -6,4 +6,5 @@ com\dzf\entity\Index.class
 com\dzf\entity\Note.class
 com\dzf\entity\Author.class
 com\dzf\entity\NoteResultSql$1.class
+com\dzf\entity\User.class
 com\dzf\entity\NoteResultSql$2.class

@@ -34,11 +34,14 @@ public class RedisTest {
 	
 	@RequestMapping("/getKey")
 	@ResponseBody
-	public String getKey(HttpServletResponse response,HttpServletRequest request,String key){
-		response.setCharacterEncoding("utf-8");
-		response.setContentType("application/json;charset=utf-8");
-		request.getParameter("");
-		return redisService.getKey(key);
+	public String getKey(HttpServletResponse response,HttpServletRequest request,String key)throws Exception{
+//		request.setCharacterEncoding("utf-8");
+//		response.setCharacterEncoding("utf-8");
+//		response.setContentType("application/json;charset=utf-8");
+		String key2 = redisService.getKey(key);
+		String value= new String(key2.getBytes(),"ISO-8859-1");
+		System.out.println("从redis中取出来的值为："+key2);
+		return value;
 	}
 	
 }

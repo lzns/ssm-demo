@@ -16,6 +16,7 @@
 			expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
 	<!-- 加载 properties 配置文件 -->
+	<!-- 多个配置文件，每个文件前都要加classpath -->
 	<context:property-placeholder location="classpath:jdbc.properties,classpath:redis.properties" />
 	<!-- 开启自动扫描 -->
 	<!-- 开启注解的方式 aop -->
@@ -125,6 +126,7 @@
 		<property name="basePackage" value="com.dzf.dao" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
+	
 	<bean id="requestFactory"
 		class="org.springframework.http.client.SimpleClientHttpRequestFactory">
 		<property name="readTimeout" value="10000" />
@@ -143,7 +145,7 @@
 	</bean>
 
 	<!-- 配置rmi远程访问的服务端 bean中id属性有且只有一个，出现同名的要么最后面一个把之前的全部覆盖掉（spring默认设置），要么会报错（如果spring 
-		设置不可以覆盖di相同的bean定义，那么就出报错）， 如果只配置了name属性，没有配置id属性，那么默认name属性的值为id属性的值 -->
+		设置不可以覆盖id相同的bean定义，那么就出报错）， 如果只配置了name属性，没有配置id属性，那么默认name属性的值为id属性的值 -->
 	<bean name="rmiServerService" class="com.dzf.service.RmiServerServiceImpl"></bean>
 	<bean name="rmiTest" class="org.springframework.remoting.rmi.RmiServiceExporter">
 		<property name="service" ref="rmiServerService" />
