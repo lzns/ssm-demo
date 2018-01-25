@@ -1,13 +1,11 @@
 package com.dzf.controller;
 
 import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
@@ -28,6 +26,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 /**
  * 文件上传测试
@@ -45,7 +44,7 @@ public class MyFileUpload {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping("/upload1")
+	@RequestMapping(value="/upload1",produces="text/html;charset=utf-8")
 	@ResponseBody
 	private String upload1(HttpServletRequest request,HttpServletResponse response) {
 		try {
@@ -85,11 +84,11 @@ public class MyFileUpload {
 	}
 
 	/**
-	 * 
+	 * 单个文件上传
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping("/upload2")
+	@RequestMapping(value="/upload2",produces="text/html;charset=utf-8")
 	@ResponseBody
 	private String upload2(@RequestParam("file")CommonsMultipartFile partFile,HttpServletRequest request) {
 		try {
@@ -113,6 +112,67 @@ public class MyFileUpload {
 		} 
 	}
 
+	/**
+	 * 单个文件上传
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="/upload4",produces="text/html;charset=utf-8")
+	@ResponseBody
+	private String upload4(@RequestParam("file")MultipartFile partFile,HttpServletRequest request) {
+		try {
+			String path = request.getServletContext().getRealPath("/upload");
+			String name = request.getParameter("name");
+			log.info("其他的参数{}",name);
+			log.info("upload2---------------start---------------------");
+			log.info("这个临时文件的路径是[{}]", path);
+			String filename = partFile.getOriginalFilename();
+			log.info("文件的名字：{}",filename);
+			File file = new File(path+"/"+filename);
+			InputStream inputStream = partFile.getInputStream();
+			FileUtils.copyInputStreamToFile(inputStream, file);
+			if(inputStream!=null){
+				inputStream.close();
+			}
+			return "文件上传成功！";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "文件上传失败！";
+		} 
+	}
+	
+	/**
+	 * 多个文件上载
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="/upload3",produces="text/html;charset=utf-8")
+	@ResponseBody
+	private String upload3(@RequestParam("file")CommonsMultipartFile[] partFiles,HttpServletRequest request) {
+		InputStream inputStream = null;	
+		try {
+			String path = request.getServletContext().getRealPath("/upload");
+			String name = request.getParameter("name");
+			log.info("其他的参数{}",name);
+			log.info("upload2---------------start---------------------");
+			log.info("这个临时文件的路径是[{}]", path);
+			for (int i = 0; i < partFiles.length; i++) {
+				String filename = partFiles[i].getOriginalFilename();
+				log.info("文件的名字：{}",filename);
+				File file = new File(path+"/"+filename);
+				inputStream = partFiles[i].getInputStream();
+				FileUtils.copyInputStreamToFile(inputStream, file);
+			}
+			if(inputStream!=null){
+				inputStream.close();
+			}
+			return "文件上传成功！";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "文件上传失败！";
+		} 
+	}
+	
 	/**
 	 * 文件下载
 	 * 单个文件下载
@@ -170,6 +230,21 @@ public class MyFileUpload {
 		zip.close();
 		in.close();
 		FileUtils.copyFile(zipFile, response.getOutputStream());
+		if(zipFile.exists()){
+			if(zipFile.delete()){
+				log.info("压缩包删成功！！");
+			}else{
+				log.info("压缩包产出失败！！");
+			}
+			
+		}
 	}
-	
+	@RequestMapping(value="/test",produces="text/html;charset=utf-8")
+	@ResponseBody
+	public String testAjax(String name){
+		
+		String str = "后台成功返回:"+name;
+		
+		return str;
+	}
 }
