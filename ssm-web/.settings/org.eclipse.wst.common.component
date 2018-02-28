@@ -12,6 +12,6 @@
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <property name="java-output-path" value="/ssm-web/target/classes"/>
-        <property name="context-root" value="ssm"/>
+        <property name="context-root" value="ssm-web"/>
     </wb-module>
 </project-modules>

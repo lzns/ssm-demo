@@ -8,13 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.baomidou.mybatisplus.plugins.pagination.PageHelper;
 import com.dzf.dao.IndexDao;
 import com.dzf.entity.Author;
 import com.dzf.entity.Index;
 import com.dzf.entity.Note;
-import com.github.pagehelper.Page;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 
 @Service
 public class IndexServiceImpl<T> implements IndexService {
@@ -67,10 +65,10 @@ public class IndexServiceImpl<T> implements IndexService {
 		List<Index> list2 = indexDao.queryForPage(ids);
 		// 设置当前的页码和条数
 		PageHelper.startPage(1, 5);
-		PageInfo<Index> pageInfo = new PageInfo<Index>(list2);
+//		PageInfo<Index> pageInfo = new PageInfo<Index>(list2);
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("list", pageInfo.getList());
-		map.put("rows", pageInfo.getTotal());
+//		map.put("list", pageInfo.getList());
+//		map.put("rows", pageInfo.getTotal());
 		return map;
 	}
 
@@ -120,12 +118,12 @@ public class IndexServiceImpl<T> implements IndexService {
 //		PageHelper.startPage(1, 3);
 		List<Note> notes = indexDao.getNotes(title);
 		System.out.println(notes);
-		PageInfo<Note> page = new PageInfo<Note>(notes);
+//		PageInfo<Note> page = new PageInfo<Note>(notes);
 		Map<String,Object> map = new HashMap<String,Object>();
-		map.put("list", page.getList());
-		map.put("pageNo", page.getPageNum());
-		map.put("pageSize", page.getPageSize());
-		map.put("rows",page.getTotal());
+//		map.put("list", page.getList());
+//		map.put("pageNo", page.getPageNum());
+//		map.put("pageSize", page.getPageSize());
+//		map.put("rows",page.getTotal());
 //		map.put("list",notes);
 		return map;
 	}

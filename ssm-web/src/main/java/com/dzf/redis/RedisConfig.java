@@ -17,9 +17,9 @@ import redis.clients.jedis.JedisPoolConfig;
  */
 //@Configuration
 public class RedisConfig {
-	@Value("${redis.maxIdle}")
+	@Value("${redis.maxIdle}")//最大空闲数
 	private Integer maxIdle;
-	@Value("${redis.maxTotal}")
+	@Value("${redis.maxTotal}")//最小空闲数
 	private Integer maxTotal;
 	@Value("${redis.maxWaitMills}")
 	private Integer maxWaitMills;

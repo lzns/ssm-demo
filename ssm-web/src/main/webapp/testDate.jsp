@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<c:set var = "ctx" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,8 +30,14 @@ function test1(){
 		asyn:false,
 		cache:false
 	});
-}
-
+  }
+function test2(){
+		alert("2秒后跳转到另一个页面");
+		setTimeout(function() {
+			window.location.href="${ctx}/testJson.jsp";
+		}, 2000);
+	
+	}
 </script>
 <body>
 	<h2 align="center">本页面进行日期格式数据传输测试</h2>
@@ -38,6 +46,10 @@ function test1(){
 		<input type="text" name="code" />
 		<input type="text" name="desc" />
 		<input type="submit" value="提交" />
+	<hr>	
+	<h2>
+		<input type="button" onclick="test2();" value="测试定时器">
+	</h2>
 	</form>
 </body>
 </html>

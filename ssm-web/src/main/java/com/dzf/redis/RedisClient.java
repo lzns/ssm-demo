@@ -10,8 +10,9 @@ import org.springframework.stereotype.Component;
 import redis.clients.jedis.Jedis;
 
 /**
- * redis 客户端
- * 使用redis的主从复制
+ * <p>redis 客户端,使用jedis来操作redis
+ * 使用redis的主从复制</p>
+ * 
  * @author dingzf
  * @date 2017年11月30日
  * @time 21:23:56

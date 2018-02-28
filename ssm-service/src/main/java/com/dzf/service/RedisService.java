@@ -30,7 +30,9 @@ public class RedisService {
 		template.opsForValue().set(key, value, time, TimeUnit.SECONDS);//指定过期时间
 	}
 	public String getKey(String key){
-	    return	(String)template.opsForValue().get(key);//如果过期了获取的是空
+//	    template.opsForValue().g
+		return	(String)template.opsForValue().get(key);//如果过期了获取的是空
+	    
 	}
 	public void setKeys(Map<String,Object> map){
 		//设置多个值 

@@ -16,6 +16,7 @@ public class ResultInfo implements Serializable{
 	
 	private String code ;
 	private String desc;
+	private String url;
 	private Object data;
 	//解决后台类型为时间类型无法转换的问题
 	@DateTimeFormat(pattern="yyyy-mm-dd")
@@ -23,6 +24,14 @@ public class ResultInfo implements Serializable{
 	
 	public Date getBirthday() {
 		return birthday;
+	}
+	
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
 	public void setBirthday(Date birthday) {
