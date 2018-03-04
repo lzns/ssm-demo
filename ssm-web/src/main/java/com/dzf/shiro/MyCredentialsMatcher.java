@@ -50,7 +50,7 @@ public class MyCredentialsMatcher extends HashedCredentialsMatcher implements In
 	
 	/**
 	 * 进行身份匹配
-	 * @param token
+	 * @param authcToken
 	 * @param info
 	 * @return
 	 */

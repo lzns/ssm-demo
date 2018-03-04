@@ -1,13 +1,10 @@
 package com.dzf.redis;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import redis.clients.jedis.Jedis;
+
 import java.util.List;
 import java.util.Map;
-
-import javax.annotation.Resource;
-
-import org.springframework.stereotype.Component;
-
-import redis.clients.jedis.Jedis;
 
 /**
  * <p>redis 客户端,使用jedis来操作redis
@@ -21,10 +18,10 @@ import redis.clients.jedis.Jedis;
 //@Component
 public class RedisClient {
 
-	@Resource 
+	@Autowired
 	private Jedis masterJedis;
 	
-	@Resource
+	@Autowired
 	private Jedis slaveJedis;
 	
 	public void setKey(String name,String value){

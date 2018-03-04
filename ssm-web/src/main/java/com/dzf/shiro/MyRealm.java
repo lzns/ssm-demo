@@ -1,14 +1,9 @@
 package com.dzf.shiro;
 
-import java.util.List;
-
-import javax.annotation.Resource;
-
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.AuthenticationInfo;
-import org.apache.shiro.authc.AuthenticationToken;
-import org.apache.shiro.authc.SimpleAuthenticationInfo;
-import org.apache.shiro.authc.UsernamePasswordToken;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.dzf.entity.User;
+import com.dzf.service.IUserService;
+import org.apache.shiro.authc.*;
 import org.apache.shiro.authc.credential.CredentialsMatcher;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
@@ -19,10 +14,9 @@ import org.apache.shiro.subject.SimplePrincipalCollection;
 import org.apache.shiro.util.SimpleByteSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.dzf.entity.User;
-import com.dzf.service.IUserService;
+import java.util.List;
 
 /**
  * shiro的核心
@@ -34,7 +28,7 @@ public class MyRealm extends AuthorizingRealm{
 	
 	private static final Logger log = LoggerFactory.getLogger(MyRealm.class);
 	
-	@Resource
+	@Autowired
 	private IUserService iUserService;
 	
 	private CacheManager chacheManager;

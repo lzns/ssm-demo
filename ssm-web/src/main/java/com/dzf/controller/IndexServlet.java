@@ -1,26 +1,24 @@
 package com.dzf.controller;
 
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-
+import com.dzf.entity.Author;
+import com.dzf.entity.Index;
+import com.dzf.entity.Note;
+import com.dzf.service.IndexService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.dzf.entity.Author;
-import com.dzf.entity.Index;
-import com.dzf.entity.Note;
-import com.dzf.service.IndexService;
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/ssm")
 public class IndexServlet {
 
-	@Resource
+	@Autowired
 	private IndexService indexService;
 	
 	@RequestMapping("/hello")

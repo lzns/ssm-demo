@@ -1,11 +1,9 @@
 package com.dzf.service;
 
-import javax.annotation.Resource;
-
-import org.springframework.stereotype.Service;
-
 import com.dzf.dao.UserDao;
 import com.dzf.entity.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * <p>用户服务层 </p>
@@ -16,7 +14,7 @@ import com.dzf.entity.User;
 @Service
 public class UserService {
 
-	@Resource 
+	@Autowired
 	private UserDao userDao;
 
 	/**
