@@ -1,9 +1,11 @@
 package com.dzf.entity;
 
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.enums.IdType;
 import java.util.Date;
 import com.baomidou.mybatisplus.annotations.TableId;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * <p>
@@ -67,6 +69,19 @@ public class User implements Serializable {
      */
 	private Date create_time;
 
+	/**
+	 * 角色
+	 */
+	@TableField(exist = false)
+	private List<Role> roleList;
+
+	public List<Role> getRoleList() {
+		return roleList;
+	}
+
+	public void setRoleList(List<Role> roleList) {
+		this.roleList = roleList;
+	}
 
 	public Long getId() {
 		return id;
@@ -167,18 +182,19 @@ public class User implements Serializable {
 	@Override
 	public String toString() {
 		return "User{" +
-			" id=" + id +
-			", login_name=" + login_name +
-			", name=" + name +
-			", password=" + password +
-			", salt=" + salt +
-			", sex=" + sex +
-			", age=" + age +
-			", phone=" + phone +
-			", user_type=" + user_type +
-			", status=" + status +
-			", organization_id=" + organization_id +
-			", create_time=" + create_time +
-			"}";
+				"id=" + id +
+				", login_name='" + login_name + '\'' +
+				", name='" + name + '\'' +
+				", password='" + password + '\'' +
+				", salt='" + salt + '\'' +
+				", sex=" + sex +
+				", age=" + age +
+				", phone='" + phone + '\'' +
+				", user_type=" + user_type +
+				", status=" + status +
+				", organization_id=" + organization_id +
+				", create_time=" + create_time +
+				", roleList=" + roleList +
+				'}';
 	}
 }

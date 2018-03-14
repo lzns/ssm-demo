@@ -1,4 +1,5 @@
 com\dzf\shiro\ShiroAjaxSessionFilter.class
+com\dzf\shiro\ShiroByteSource.class
 com\dzf\utils\AlgorithmUtil.class
 com\dzf\controller\JsonTestServlet.class
 com\dzf\shiro\PasswordHash.class

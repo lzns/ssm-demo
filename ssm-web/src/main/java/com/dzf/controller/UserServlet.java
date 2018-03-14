@@ -8,7 +8,9 @@ import com.dzf.vo.ResultInfo;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.DisabledAccountException;
+import org.apache.shiro.authc.ExcessiveAttemptsException;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.util.SavedRequest;
 import org.apache.shiro.web.util.WebUtils;
@@ -66,16 +68,29 @@ public class UserServlet {
 			if(url==null){
 				url  = ctx+"/user/main";
 			}
+		}catch (ExcessiveAttemptsException e){
+			e.printStackTrace();
+			log.error(e.getMessage());
+			result.setDesc(e.getMessage());
+			result.setCode("445");
+			return result;
 		}catch (DisabledAccountException e) {
 			e.printStackTrace();
 			log.debug(e.toString());
 			result.setCode("400");
 			result.setDesc("账号已经被禁用！");
+			return result;
 		} catch (AuthenticationException e) {
 			e.printStackTrace();
 			log.debug(e.toString());
 			result.setCode("300");
 			result.setDesc("用户名或者密码错误");
+			return  result;
+		}catch (Exception e){
+			e.printStackTrace();
+			result.setCode("444");
+			result.setDesc(e.toString());
+			return result;
 		}
 		result.setCode("666");
 		result.setUrl(url);
@@ -85,6 +100,7 @@ public class UserServlet {
 	/**
 	 * 用户登出 
 	 */
+	@RequiresRoles(value = {"admin"})
 	@RequestMapping("logout")
 	public String logout(HttpServletRequest request){
 		Subject subject = SecurityUtils.getSubject();
@@ -143,4 +159,14 @@ public class UserServlet {
 	public String toLogin(){
 		return "login";
 	}
+
+	/**
+	 * 跳转到为授权页面
+	 * @return
+	 */
+	@RequestMapping("/unAuthor")
+	public String unAuthor(){
+		return "unauth";
+	}
 }
+

@@ -1,15 +1,14 @@
 package com.dzf.shiro;
 
-import java.util.Collection;
-import java.util.Set;
-
 import org.apache.shiro.cache.CacheException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cache.Cache;
 import org.springframework.cache.Cache.ValueWrapper;
 import org.springframework.cache.CacheManager;
-import org.springframework.data.redis.cache.RedisCache;
+
+import java.util.Collection;
+import java.util.Set;
 
 /**
  * <p> 自定义缓存 将数据存入到redis中 </p>
@@ -31,7 +30,7 @@ public class ShiroSpringCache<K,V> implements org.apache.shiro.cache.Cache<K, V>
 		}
 		this.cacheManager = cacheManager;
 		//这里首先是从父类中获取这个cache,如果没有会先创建一个redisCache,初始化这个redisCache的时候
-		//会设置它的时间如果没有配置过这个缓存的，那么默认的缓存时间是为0的，如果配置了，就会重新创建一个
+		//会设置它的过期时间如果没有配置过这个缓存的，那么默认的缓存时间是为0的，如果配置了，就会重新创建一个
 		//如果从缓存中取到就可以拿得到，这个redisCache实现了spring中的cache
 		this.cache= cacheManager.getCache(name);
 	}

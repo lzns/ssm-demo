@@ -91,7 +91,6 @@ public class MyFileUpload {
 	@RequestMapping(value="/upload2",produces="text/html;charset=utf-8")
 	@ResponseBody
 	private String upload2(@RequestParam("file")CommonsMultipartFile partFile,HttpServletRequest request) {
-		try {
 			String path = request.getServletContext().getRealPath("/upload");
 			String name = request.getParameter("name");
 			log.info("其他的参数{}",name);
@@ -100,16 +99,17 @@ public class MyFileUpload {
 			String filename = partFile.getOriginalFilename();
 			log.info("文件的名字：{}",filename);
 			File file = new File(path+"/"+filename);
-			InputStream inputStream = partFile.getInputStream();
-			FileUtils.copyInputStreamToFile(inputStream, file);
-			if(inputStream!=null){
-				inputStream.close();
-			}
-			return "文件上传成功！";
-		} catch (Exception e) {
+			try {
+				InputStream inputStream = partFile.getInputStream();
+				FileUtils.copyInputStreamToFile(inputStream, file);
+				if(inputStream!=null){
+					inputStream.close();
+				}
+				return "文件上传成功！";
+			}catch (Exception e) {
 			e.printStackTrace();
 			return "文件上传失败！";
-		} 
+		}
 	}
 
 	/**

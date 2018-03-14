@@ -8,6 +8,7 @@ D:\Work_Space\ssm-demo\ssm-web\src\main\java\com\dzf\controller\IndexServlet.jav
 D:\Work_Space\ssm-demo\ssm-web\src\main\java\com\dzf\controller\RedisTest.java
 D:\Work_Space\ssm-demo\ssm-web\src\main\java\com\dzf\controller\RustServlet.java
 D:\Work_Space\ssm-demo\ssm-web\src\main\java\com\dzf\controller\UserServlet.java
+D:\Work_Space\ssm-demo\ssm-web\src\main\java\com\dzf\shiro\ShiroByteSource.java
 D:\Work_Space\ssm-demo\ssm-web\src\main\java\com\dzf\redis\RedisClient.java
 D:\Work_Space\ssm-demo\ssm-web\src\main\java\com\dzf\redis\RedisConfig.java
 D:\Work_Space\ssm-demo\ssm-web\src\main\java\com\dzf\shiro\MyCredentialsMatcher.java

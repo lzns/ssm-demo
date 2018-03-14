@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dzf.service.RedisService;
 
-@Controller
-@RequestMapping("redis")
+//@Controller
+//@RequestMapping("redis")
 public class RedisTest {
 	@Autowired
 	private RedisService redisService;

@@ -76,8 +76,12 @@ public class ResultInfo implements Serializable{
 
 	@Override
 	public String toString() {
-		return "ResultInfo [code=" + code + ", desc=" + desc + ", data=" + data + ", birthday=" + birthday + "]";
+		return "ResultInfo{" +
+				"code='" + code + '\'' +
+				", desc='" + desc + '\'' +
+				", url='" + url + '\'' +
+				", data=" + data +
+				", birthday=" + birthday +
+				'}';
 	}
-	
-	
 }

@@ -1,5 +1,6 @@
 package com.dzf.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
@@ -17,5 +18,12 @@ import com.dzf.service.IRoleService;
  */
 @Service
 public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IRoleService {
-	
+    @Autowired
+    private RoleMapper roleMapper;
+    public Role queryRoleByUserId(Long userId){
+        if(userId==null){
+            return null;
+        }
+        return  roleMapper.queryRoleByUserId(userId);
+    }
 }

@@ -12,15 +12,17 @@
 	 http://www.springframework.org/schema/tx/spring-tx-3.0.xsd" default-lazy-init="false">
 	<!-- 扫描 com.dzf 及其所有子包下类 -->
 	<context:component-scan base-package="com.dzf">
-		<context:exclude-filter type="annotation"
-			expression="org.springframework.stereotype.Controller" />
+		<!--<context:exclude-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />-->
 	</context:component-scan>
 	<!-- 加载 properties 配置文件 -->
 	<!-- 多个配置文件，每个文件前都要加classpath -->
 	<context:property-placeholder location="classpath:jdbc.properties,classpath:redis.properties" />
 	<!-- 开启自动扫描 -->
-	<!-- 开启注解的方式 aop -->
-	<aop:aspectj-autoproxy proxy-target-class="true"/>
+	<!-- 开启注解的方式  proxy-target-class="true"：启用cglib代理 expose-proxy="true" 表示自调用也生效 -->
+
+	<aop:aspectj-autoproxy proxy-target-class="true" expose-proxy="true"/>
+	<!-- aop:scoped-proxy 表示当为单例的对象引用了多例的对象，每次多例都不是同一个,表示多例生效 -->
 	<!-- 配置数据源 -->
 	<!-- 配置 c3p0 数据源 -->
 	<!-- <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"> 
@@ -31,7 +33,7 @@
 		value="false"/> 获取连接超时时间 <property name="checkoutTimeout" value="10000"/> 
 		当获取连接失败重试次数 <property name="acquireRetryAttempts" value="2"/> </bean> -->
 
-	<bean id="log-filter" class="com.alibaba.druid.filter.logging.Log4jFilter">
+	<bean id="log-filter" class="com.alibaba.druid.filter.logging.Log4jFilter" >
 		<!--日志打印可执行的sql -->
 		<property name="statementExecutableSqlLogEnable" value="true" />
 		<property name="dataSourceLogEnabled" value="true" />
@@ -90,14 +92,23 @@
 	<!-- 设置事物增强 对那些方法加上事务 -->
 	<tx:advice id="txAdvice" transaction-manager="txManager">
 		<tx:attributes>
-			<tx:method name="get*" read-only="true" />
-			<tx:method name="find*" read-only="true" />
-			<tx:method name="query*" read-only="true" />
-			<tx:method name="load*" read-only="true" />
-			<tx:method name="add*" propagation="REQUIRED" />
-			<tx:method name="insert*" propagation="REQUIRED" />
-			<tx:method name="update*" propagation="REQUIRED" />
-			<tx:method name="delete*" propagation="REQUIRED" />
+			<tx:method name="get*"   read-only="true" propagation="NOT_SUPPORTED"/>
+			<tx:method name="find*"  read-only="true" propagation="NOT_SUPPORTED"/>
+			<tx:method name="query*" read-only="true" propagation="NOT_SUPPORTED"/>
+			<tx:method name="load*"  read-only="true" propagation="NOT_SUPPORTED"/>
+			<!--事务的传播机制： 默认就是required
+				required :没有就创建一个transaction,有的话就不创建
+				required_new :重新创建一个属于自己的事务，原来有的事务将被挂起
+				mandatory: 该方法只能存在一个已存在的事务中，自己不能发起事务，如果不存在事务，会抛出异常
+				supports: 如果存在事务就在此事务下执行，如果没有，就在无事务下执行
+				not_supported:声明不需要事务，如果关联到一个事务，会将这个事务挂起，调用结束过，原事务接着执行
+				never:该方法绝不能在事务里面执行，如果关联到事务就报错，该方法只能在无事务里面执行
+				nested:如果没有，就新建一个事务；如果有，就在当前事务中嵌套其他事务
+			-->
+			<tx:method name="add*"     rollback-for="Exception"/>
+			<tx:method name="insert*"  rollback-for="Exception" />
+			<tx:method name="update*"  rollback-for="Exception" />
+			<tx:method name="delete*"  rollback-for="Exception" />
 		</tx:attributes>
 	</tx:advice>
 	<!-- aop 切面配置 -->
@@ -169,16 +180,11 @@
             <bean class="com.baomidou.springmvc.common.MyMetaObjectHandler" />
         </property> -->
 	</bean>
-
-    <!-- MyBatis 动态扫描  -->
-    <!-- <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.dzf.test.mapper,com.baomidou.springmvc.mapper"/>
-    </bean> -->
     <!-- 配置扫描器 使用扫描的形式引入所有的接口类 引入后可以使用类名，首字母小写即可！ -->
 	 <bean id="mapperScanner" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<!--扫描 com.dzf.dao 这个包以及它的子包下的所有映射接口类 动态实现dao，注入到spring容器中去-->
 		<property name="basePackage" value="com.dzf.dao" />
-		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+		<!--<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />-->
 	</bean> 
 	<!-- mybatis-plus end  -->
 	<!--  RestTemplate begin -->
@@ -211,10 +217,11 @@
 		<!-- 这个端口不能和项目的端口一样，是个独立的端口 -->
 		<property name="registryPort" value="8083" />
 	</bean>
-	<!--  rmi begin -->
+	<!--redis 和 ehcache 任选其一 -->
+	<!--<import resource="spring-ehcache.xml"/>-->
 	<import resource="spring-redis-cache.xml"/>
 	<import resource="spring-shiro.xml"/>
-	
+	<!--  rmi begin -->
 	<!-- ###############################-Redis-########################################### -->
 	<!-- 配置redis和spring 的整合 -->
 	<!-- <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">

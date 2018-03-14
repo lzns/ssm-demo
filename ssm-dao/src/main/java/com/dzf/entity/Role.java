@@ -1,5 +1,6 @@
 package com.dzf.entity;
 
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.enums.IdType;
 import com.baomidou.mybatisplus.annotations.TableId;
 import java.io.Serializable;
@@ -20,11 +21,12 @@ public class Role implements Serializable {
      * 主键id
      */
 	@TableId(value="id", type= IdType.AUTO)
-	private Long id;
+	private Long roleId;
     /**
      * 角色名
      */
-	private String name;
+    @TableField(value = "name")
+	private String roleName;
     /**
      * 排序号
      */
@@ -36,23 +38,31 @@ public class Role implements Serializable {
     /**
      * 状态
      */
-	private Integer status;
+    @TableField(value = "status")
+	private Integer roleStatus;
 
-
-	public Long getId() {
-		return id;
+	public Long getRoleId() {
+		return roleId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setRoleId(Long roleId) {
+		this.roleId = roleId;
 	}
 
-	public String getName() {
-		return name;
+	public String getRoleName() {
+		return roleName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
+	}
+
+	public Integer getRoleStatus() {
+		return roleStatus;
+	}
+
+	public void setRoleStatus(Integer roleStatus) {
+		this.roleStatus = roleStatus;
 	}
 
 	public Integer getSeq() {
@@ -71,22 +81,14 @@ public class Role implements Serializable {
 		this.description = description;
 	}
 
-	public Integer getStatus() {
-		return status;
-	}
-
-	public void setStatus(Integer status) {
-		this.status = status;
-	}
-
 	@Override
 	public String toString() {
 		return "Role{" +
-			", id=" + id +
-			", name=" + name +
-			", seq=" + seq +
-			", description=" + description +
-			", status=" + status +
-			"}";
+				"roleId=" + roleId +
+				", roleName='" + roleName + '\'' +
+				", seq=" + seq +
+				", description='" + description + '\'' +
+				", roleStatus=" + roleStatus +
+				'}';
 	}
 }

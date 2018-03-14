@@ -1,11 +1,8 @@
 package com.dzf.shiro;
 
 import org.apache.shiro.cache.Cache;
-import org.apache.shiro.cache.CacheException;
 import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.util.Destroyable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 /**
  * <p> 自定义cacheManage 扩张shiro里面的缓存 使用reids作缓存 </p> 
  * <description>
@@ -16,7 +13,7 @@ import org.slf4j.LoggerFactory;
  * @date 2018年2月3日
  * @time 14:01:53
  */
-@SuppressWarnings("all")
+
 public class ShiroSpringCacheManager implements CacheManager ,Destroyable{
 	
 	private org.springframework.cache.CacheManager cacheManager;

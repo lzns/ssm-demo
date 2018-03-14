@@ -12,5 +12,6 @@ import com.baomidou.mybatisplus.service.IService;
  * @since 2018-02-25
  */
 public interface IRoleService extends IService<Role> {
-	
+    public Role queryRoleByUserId(Long userId);
+
 }

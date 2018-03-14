@@ -1,8 +1,6 @@
 package com.dzf.controller;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,15 +29,23 @@ public class JsonTestServlet {
 	 */
 	@RequestMapping("/test1")
 	@ResponseBody
-	public ResultInfo test1(HttpServletResponse response){
+	public Object test1(HttpServletResponse response){
 		ResultInfo result = new ResultInfo();
 		result.setCode("200");
 		result.setDesc("请求成功！");
 		Map<String,String> map = new HashMap<String,String>();
 		map.put("name", "求成");
 		map.put("age","35");
-		result.setData(map);
-		return result;
+		Map<String,String> map2 = new HashMap<String,String>();
+		map2.put("name","liqiucheng");
+		map2.put("age","12");
+		map2.put("sex","M");
+		List list = new ArrayList();
+		list.add(map);
+		list.add(map2);
+		//result.setData(map);
+		//return result;
+		return list;
 	}
 	/**
 	 * 测试返回json类型的数据，

@@ -14,13 +14,20 @@ function test1(){
 		url:'json/test1',
 		datatype:'josn',
 		success:function(text){
-			var code = text.code;
+			/*var code = text.code;
 			var desc = text.desc;
 			alert(code+desc);
 			var obj = text.data;
 			alert(obj.name + obj.age);
 			var str = JSON.stringify(text);
-			alert(str);
+			alert(str);*/
+			alert(text);
+			for (var i = 0;i<text.length;i++){
+			    var name = text[i].name;
+			    var age = text[i].age;
+			    alert(name + ":" + age);
+            }
+
 		},
 		error:function(data){
 			alert("后台发生异常，请联系管理员！");
