@@ -334,6 +334,8 @@ public class XLSXCovertCSVReader {
         this.sheetName = sheetName;
     }
 
+    public XLSXCovertCSVReader(){};
+
     /**
      * Parses and shows the content of one sheet using the specified styles and
      * shared-strings tables.
