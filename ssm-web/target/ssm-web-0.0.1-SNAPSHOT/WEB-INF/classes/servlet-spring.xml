@@ -14,7 +14,8 @@
 	<!-- <mvc:resources location="/static/" mapping="/html/**"/>  --><!-- 个人感觉要这个是多余的  -->
 	<mvc:default-servlet-handler/> <!-- 这个是对静态资源的放行 -->
 	<!-- 
-		打开springmvc的注解模式
+		打开springmvc的注解模式  使用@controller 需要请求处理器映射器，和请求处理器适配器的支持，使用这个注解
+		会自动的注册requestMappingHandlerMapping 和 requestMappingHandlerAdapter
 	mvc 请求映射 处理器与适配器配置 -->
 	<mvc:annotation-driven >
 		<mvc:message-converters register-defaults="true">

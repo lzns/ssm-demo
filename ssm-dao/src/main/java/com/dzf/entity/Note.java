@@ -1,9 +1,9 @@
 package com.dzf.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.util.Date;
-
-import org.springframework.format.annotation.DateTimeFormat;
 
 @SuppressWarnings("all")
 public class Note implements Serializable{

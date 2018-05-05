@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" isELIgnored="false"%>    
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+    pageEncoding="UTF-8" isELIgnored="false"%>
 <c:set var = "ctx" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="${ctx}/static/bootstrap/bootstrap.min.css" />
 <link rel="stylesheet" href="${ctx}/static/bootstrap/signin.css"  />
-<script src="${ctx}/static/js/jquery.min.js" type="text/javascript" ></script>
+<script src="${ctx}/static/js/jquery-3.3.1.js" type="text/javascript" ></script>
 <script src="${ctx}/static/bootstrap/popper.min.js" type="text/javascript" ></script>
 <script src="${ctx}/static/bootstrap/bootstrap.min.js"  type="text/javascript" ></script>
 <title>登录页面</title>

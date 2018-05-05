@@ -246,6 +246,24 @@
 			<version>3.17</version>
 		</dependency>
 		<!--poi end-->
+
+		<!--JSR 303 Start-->
+		<!--<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>4.3.1.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>1.1.0.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.logging</groupId>
+			<artifactId>jboss-logging</artifactId>
+			<version>3.1.1.GA</version>
+		</dependency>-->
+		<!--JSR 303 End-->
 	</dependencies>
 	<build>
 		<!-- <finalName>ssm</finalName> -->

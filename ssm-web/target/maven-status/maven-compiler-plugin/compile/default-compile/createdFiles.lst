@@ -4,6 +4,7 @@ com\dzf\utils\AlgorithmUtil.class
 com\dzf\controller\JsonTestServlet.class
 com\dzf\shiro\PasswordHash.class
 com\dzf\controller\MyFileUpload.class
+com\dzf\base\MyScheduleDemo1.class
 com\dzf\controller\RustServlet.class
 com\dzf\converter\MyMessageConverter.class
 com\dzf\controller\RedisTest.class
@@ -14,6 +15,7 @@ com\dzf\shiro\ShiroSpringCacheManager.class
 com\dzf\controller\UserServlet.class
 com\dzf\utils\SendEmailUtil.class
 com\dzf\shiro\ShiroSpringCache.class
+com\dzf\base\MyControllerAdvice.class
 com\dzf\controller\IndexServlet.class
 com\dzf\shiro\MyCredentialsMatcher.class
 com\dzf\shiro\MyRealm.class

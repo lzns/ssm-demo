@@ -40,7 +40,7 @@ public class UserServlet {
 	 */
 	@RequestMapping("/login")
 	@ResponseBody
-	public ResultInfo login(HttpServletRequest request,HttpServletResponse response){
+	public ResultInfo login(HttpServletRequest request,HttpServletResponse response)throws Exception{
 		String ctx = request.getContextPath();
 		ResultInfo result = new ResultInfo();
 		String url = null;
@@ -49,6 +49,7 @@ public class UserServlet {
 		if("ok".equals(remember)){
 			rememberMe = true;
 		}
+
 		String login_name = request.getParameter("login_name");
 		String password = request.getParameter("password");
 		log.info("前台提交的数据：login_name:{},password:{},rememberMe:{}",login_name,password,remember);
@@ -105,6 +106,7 @@ public class UserServlet {
 	public String logout(HttpServletRequest request){
 		Subject subject = SecurityUtils.getSubject();
 		String userName = ((User)subject.getPrincipal()).getLogin_name();
+		//int i = 1/0;
 		subject.logout();
 		log.info("用户{}退出了秦红霞养猪网系统",userName);
 		return "login";
@@ -116,7 +118,7 @@ public class UserServlet {
 	 */
 	@RequestMapping("/register")
 	@ResponseBody
-	public ResultInfo register(HttpServletRequest request,User user){
+	public ResultInfo register(HttpServletRequest request, User user){
 		String ctx = request.getContextPath();
 		log.info("注册封装的user：{}",user.toString());
 		String password = user.getPassword();
@@ -167,6 +169,11 @@ public class UserServlet {
 	@RequestMapping("/unAuthor")
 	public String unAuthor(){
 		return "unauth";
+	}
+
+	@RequestMapping("/test")
+	public String test(){
+		return "test";
 	}
 }
 

@@ -25,7 +25,7 @@
 		</collection>
 	</resultMap>
 
-	<select id="selectRoleByUserId" resultMap="BaseResultMap" >
+	<select id="selectRoleByUserId" resultMap="BaseResultMap"  >
 		SELECT t1.*,t3.id roleId,t3.name roleName ,t3.status roleStatus ,t3.seq ,t3.description from user t1,user_role t2,role t3
 		<where>
 			t1.id = t2.user_id
@@ -33,4 +33,32 @@
 		and t1.id = #{userId}
 		</where>
 	</select>
+	<!--编写一个调用存储过程和存储函数的例子-->
+	<!--
+	<select id="callProcedure" parameterMap="UserMap" statementType="CALLABLE">
+				<![CDATA[
+        {call get_user_cont(?,?)}
+    ]]>
+	</select>
+	<parameterMap id="UserMap" type="java.util.Map">
+		<parameter property="userId" mode="IN"/>
+		<parameter property="cnt" mode="OUT" jdbcType="int"/>
+	</parameterMap>
+	<select id="callFunction" parameterMap="functionParam" statementType="CALLABLE">
+
+		<![CDATA[
+        {? =call fun_get_user_count(?,?)}
+    ]]>
+	</select>
+	<parameterMap id="functionParam" type="java.util.Map">
+		<parameter property="cnt" mode="OUT" jdbcType="int"/>
+		<parameter property="user_id" mode="IN" jdbcType="int"/>
+		<parameter property="name" mode="IN" jdbcType="int"/>
+	</parameterMap>-->
+	<!-- statementType  的值表示创建statementHandler 的策咯，表示使用哪种statementHandler 总有三种，第一种SimpleStatementHandler preparedStatementHandler
+	 callableStatementHandler  一次创建对应的statement
+	 创建时机：executor 每次select 或者 update 都会创建一个statementHandler
+	 一个sql的执行过程 sql ->mapperProxy -invoke ->mapperMethod ->execute - >路由-> sqlSession -> executor(五鼠simpleExecutor(默认) reuseExecutor bathExecutor) ->statementHandler(simpleStatementHandler
+	 preparedStatementHandler(默认) callableStatementHandler)-statement-db->resultHandler
+	 -->
 </mapper>

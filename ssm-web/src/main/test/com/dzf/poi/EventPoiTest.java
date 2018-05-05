@@ -21,7 +21,7 @@ import java.util.List;
 public class EventPoiTest {
     public static void main(String[] args) throws Exception {
         File file = new File("d:/test.xlsx");
-        OPCPackage opcPackage = OPCPackage.open(file);
+        OPCPackage opcPackage = OPCPackage.openOrCreate(file);
         ReadOnlySharedStringsTable sharedStringsTable = new ReadOnlySharedStringsTable(opcPackage);
         XSSFReader xssfReader = new XSSFReader(opcPackage);
         StylesTable styles = xssfReader.getStylesTable();

@@ -100,7 +100,7 @@
         <!-- 登陆成功后跳转的url -->
         <!-- <property name="successUrl" value="/index.jsp"/> -->
         <!-- 没有权限跳转的url -->
-        <property name="unauthorizedUrl" value="/unauth.jsp"/>
+        <property name="unauthorizedUrl" value="/user/unAuthor"/>
         <property name="filterChainDefinitions">
             <value>
                 <!-- 
