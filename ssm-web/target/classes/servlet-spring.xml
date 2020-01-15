@@ -81,6 +81,15 @@
         <property name="defaultEncoding" value="utf-8"></property>  
         <!-- 上传图片最大大小5M-->   
         <property name="maxUploadSize" value="5242440"></property>    
-    </bean>    
+    </bean>
+
+	<bean id="resultInfo1" class="com.dzf.vo.ResultInfo">
+		<property name="code" value="1"/>
+		<property name="desc" value="我是第一个"/>
+	</bean>
+	<bean id="resultInfo2" class="com.dzf.vo.ResultInfo">
+		<property name="code" value="2"/>
+		<property name="desc" value="我是第二个"/>
+	</bean>
 </beans>
  

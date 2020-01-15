@@ -222,8 +222,8 @@
         <property name="registryPort" value="8083"/>
     </bean>
     <!--redis 和 ehcache 任选其一 -->
-    <!--<import resource="spring-ehcache.xml"/>-->
-    <import resource="spring-redis-cache.xml"/>
+    <import resource="spring-ehcache.xml"/>
+   <!-- <import resource="spring-redis-cache.xml"/>-->
     <import resource="spring-shiro.xml"/>
     <!--  rmi begin -->
     <!-- ###############################-Redis-########################################### -->

@@ -33,7 +33,12 @@ public class UserServlet {
 	
 	@Autowired
 	private IUserService iUserService;
-	
+
+	@Autowired
+	private ResultInfo resultInfo1;
+
+	@Autowired
+	private ResultInfo resultInfo2;
 	/**
 	 * 用户登录
 	 * @return
@@ -174,6 +179,15 @@ public class UserServlet {
 	@RequestMapping("/test")
 	public String test(){
 		return "test";
+	}
+
+
+	@RequestMapping("/testRR")
+	public void testRR(){
+		log.info("-----resultInfo1-----"+resultInfo1.hashCode());
+		log.info("-----resultInfo1-----"+resultInfo2.hashCode());
+		//log.info("-----resultInfo1-----"+resultInfo1);
+		//log.info("-----resultInfo1-----"+resultInfo1);
 	}
 }
 
