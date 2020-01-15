@@ -42,7 +42,10 @@
 		<!-- <input type="button" value="查询" onclick="sub2()"/> -->
 		<input type="submit" value="插入获得主键">
 	</form>
-	
+
+	<hr>
+	<br/>
+	${pageContext.request.session.id}
 	
 </body>
 </html>
